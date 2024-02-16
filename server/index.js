@@ -13,7 +13,7 @@ require("./database/db");
 app.use(express.json());
 app.use(
     cors({
-        origin: ["http://localhost:3000"],
+        origin: ["http://localhost:5177"],
         methods: ["GET", "POST", "DELETE", "PUT"],
         allowedHeaders: ["Content-Type", "Authorization"],
         credentials: true,
@@ -22,7 +22,7 @@ app.use(
 
 app.use(require("./router"));
 
-const PORT = process.env.PORT || 8092;
+const PORT = process.env.PORT || 8094;
 
 app.listen(PORT, () => {
     console.log(`server is running at port ${PORT}`);

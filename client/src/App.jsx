@@ -1,19 +1,23 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Signup from './pages/Signup'; 
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Connect from "./pages/Connect";
+import Delete from "./pages/Delete";
 
 function App() {
   return (
-    <Router>
+    <>
+      <BrowserRouter>
       <Routes>
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        {/* Redirect to signup as the default route */}
-        <Route path="*" element={<Signup />} />
-      </Routes>
-    </Router>
+  <Route path="/" element={<Signup />} />
+  <Route path="/login" element={<Login />} />
+  <Route path="/connect" element={<Connect />} />
+  <Route path="/page-integration/:pid" element={<Delete />} />
+</Routes>
+
+      </BrowserRouter>
+    </>
   );
 }
 

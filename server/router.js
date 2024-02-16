@@ -3,7 +3,8 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const authenticate = require("./middleware/authenticate");
 
-require("./db/connect");
+require("./database/db");
+
 const User = require("./model/userSchema");
 
 // home route
@@ -11,8 +12,8 @@ router.get("/", (req, res) => {
     res.send("Hello World from the router server");
 });
 
-// register route
-router.post("/register", async(req, res) => {
+// Signup route
+router.post("/Signup", async(req, res) => {
     try {
         const { name, email, password } = req.body;
 
@@ -29,7 +30,7 @@ router.post("/register", async(req, res) => {
             await user.save();
             res.status(200).json({ message: "User Registered Successfully" });
 
-            console.log("yayyy");
+
         }
     } catch (err) {
         console.log(err);

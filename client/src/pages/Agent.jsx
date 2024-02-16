@@ -1,13 +1,44 @@
-
+import  { useState, useEffect } from 'react';
 import { BsFillBarChartFill } from 'react-icons/bs';
 import { MdPeopleAlt } from 'react-icons/md';
 import { IoIosChatboxes } from 'react-icons/io';
 import { RiRecycleFill } from 'react-icons/ri';
-import Chats from '../components/Chat';
-import Conversation from '../components/Conversation';
-import ProfileCard from '../components/ProfileCard';
+import Chats from '../components/Chats'; 
+import Conversation from '../components/Conversation'; 
+import ProfileCard from '../components/ProfileCard'; 
+import { backendlink } from '../backendlink'; 
+import { useNavigate } from 'react-router-dom';
 
 const Agent = () => {
+  const navigate = useNavigate();
+  const [chatData, setChatData] = useState([]);
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const res = await fetch(`${backendlink}/fetchMessages`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("jwtToken"),
+          },
+          credentials: "include",
+        });
+        const data = await res.json();
+        if (data.length === 0) {
+          window.alert("No Messages Found.");
+        } else {
+          setChatData(data);
+        }
+      } catch (err) {
+        console.log(err);
+        navigate("/login");
+      }
+    };
+
+    fetchMessages();
+  }, [navigate]);
+
   return (
     <div className='grid grid-cols-12 h-screen'>
       {/* Sidebar with icons */}
@@ -20,7 +51,7 @@ const Agent = () => {
       
       {/* Chat list section */}
       <div className='col-span-2 bg-gray-100 overflow-auto'>
-        <Chats />
+        <Chats chatData={chatData} />
       </div>
       
       {/* Main conversation display */}

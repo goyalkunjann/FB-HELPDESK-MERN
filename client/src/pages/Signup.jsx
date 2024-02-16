@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { backendlink } from "../backendlink";
 
 
-const Register = () => {
+const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
@@ -31,7 +31,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch(`${backendlink}/register`, {
+      const response = await fetch(`${backendlink}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -96,4 +96,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Signup;

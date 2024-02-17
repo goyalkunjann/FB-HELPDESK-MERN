@@ -38,8 +38,8 @@ The Facebook DM Helpdesk App is a third-party tool that streamlines message mana
 
 
 ## Screenshots of the App
-<img src="client/src/Assets/Screenshots/signup.png" >
-<img src="client/src/Assets/Screenshots/login.png" >
-<img src="client/src/Assets/Screenshots/connect.png" >
-<img src="client/src/Assets/Screenshots/delete.png" >
-<img src="client/src/Assets/Screenshots/agent.png" >
+<img src="client/src/assets/screenshots/signup.png" >
+<img src="client/src/assets/screenshots/login.png" >
+<img src="client/src/assets/screenshots/connect.png" >
+<img src="client/src/assets/screenshots/delete.png" >
+<img src="client/src/assets/screenshots/agent.png" >

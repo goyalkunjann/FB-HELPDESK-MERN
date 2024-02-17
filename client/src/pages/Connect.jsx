@@ -1,7 +1,7 @@
 import  { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { backendlink } from "../backendlink";
-
+import {NavLink} from "react-router-dom";
 
 const Connect = () => {
   const navigate = useNavigate();
@@ -30,8 +30,11 @@ const Connect = () => {
         },
       });
       const data = await response.json();
-      if (response.ok) {
-        setPages(data.pages || []); 
+      console.log(data);
+      if (response.ok)
+
+       {
+        setPages(data || []); 
         setShowPages(true);
       } else {
         alert("Failed to fetch pages.");
@@ -78,7 +81,8 @@ const Connect = () => {
             <h3 className="text-lg font-bold">Select a Page</h3>
             {pages.map((page, index) => (
               <div key={index} className="mt-2">
-                {page.name}
+                <NavLink to={`/page-integration/${page.name}`}>{page.name} </NavLink>
+                
               </div>
             ))}
           </div>

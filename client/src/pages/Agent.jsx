@@ -3,7 +3,7 @@ import { BsFillBarChartFill } from 'react-icons/bs';
 import { MdPeopleAlt } from 'react-icons/md';
 import { IoIosChatboxes } from 'react-icons/io';
 import { RiRecycleFill } from 'react-icons/ri';
-import Chats from '../components/Chats'; 
+import Chat from '../components/Chat'; 
 import Conversation from '../components/Conversation'; 
 import ProfileCard from '../components/ProfileCard'; 
 import { backendlink } from '../backendlink'; 
@@ -13,7 +13,7 @@ const Agent = () => {
   const navigate = useNavigate();
   const [chatData, setChatData] = useState([]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const fetchMessages = async () => {
       try {
         const res = await fetch(`${backendlink}/fetchMessages`, {
@@ -37,7 +37,7 @@ const Agent = () => {
     };
 
     fetchMessages();
-  }, [navigate]);
+  }, [navigate]);*/
 
   return (
     <div className='grid grid-cols-12 h-screen'>
@@ -51,7 +51,7 @@ const Agent = () => {
       
       {/* Chat list section */}
       <div className='col-span-2 bg-gray-100 overflow-auto'>
-        <Chats chatData={chatData} />
+        <Chat chatData={chatData} />
       </div>
       
       {/* Main conversation display */}

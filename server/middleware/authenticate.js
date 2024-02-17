@@ -1,16 +1,16 @@
 const jwt = require("jsonwebtoken");
-const Client = require("../model/userschema");
+const User = require("../model/userSchema");
 
 const authenticate = async(req, res, next) => {
     try {
         const token = req.headers.authorization;
         if (!token) {
-            return res.status(401).send("Unauthorized: No token provided");
+            throw new Error("Unauthorized: No token provided");
         }
 
         const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
 
-        const rootUser = await Client.findOne({
+        const rootUser = await User.findOne({
             _id: verifyToken._id,
             "tokens.token": token,
         });
@@ -23,7 +23,7 @@ const authenticate = async(req, res, next) => {
 
         next();
     } catch (err) {
-        res.status(401).send("Unauthorized: Invalid token");
+        res.status(401).send("Unauthorized: No token provided");
     }
 };
 

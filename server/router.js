@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 const authenticate = require("./middleware/authenticate");
 
 require("./database/db");
-
 const User = require("./model/userSchema");
 
 // home route
@@ -12,8 +11,8 @@ router.get("/", (req, res) => {
     res.send("Hello World from the router server");
 });
 
-// Signup route
-router.post("/Signup", async(req, res) => {
+// register route
+router.post("/signup", async(req, res) => {
     try {
         const { name, email, password } = req.body;
 
@@ -79,7 +78,7 @@ router.get("/userdata", authenticate, async(req, res) => {
 });
 
 // intergration route
-router.get("/integration", authenticate, async(req, res) => {
+router.get("/integration", async(req, res) => {
     try {
         const response = await fetch(
             `https://graph.facebook.com/me/accounts?access_token=${process.env.ACCESS_TOKEN}`, {
@@ -97,5 +96,7 @@ router.get("/integration", authenticate, async(req, res) => {
         console.log(err);
     }
 });
+
+
 
 module.exports = router;
